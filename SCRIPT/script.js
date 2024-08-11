@@ -14,6 +14,7 @@ function populateDropdowns() {
         dropdown.innerHTML = '<option value="ALL">ALL</option>'; // Add ALL option
         vehicles.forEach(vehicle => {
             const option = document.createElement("option");
+            option.value = vehicle;
             option.text = vehicle;
             dropdown.add(option);
         });
@@ -23,6 +24,7 @@ function populateDropdowns() {
         dropdown.innerHTML = '<option value="ALL">ALL</option>'; // Add ALL option
         items.forEach(item => {
             const option = document.createElement("option");
+            option.value = item;
             option.text = item;
             dropdown.add(option);
         });
