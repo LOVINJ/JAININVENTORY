@@ -1,48 +1,51 @@
 body {
-    background-color: skyblue;
     font-family: Arial, sans-serif;
+    background-color: skyblue;
     color: black;
-    text-align: center;
 }
 
-h1 {
+h1, h2, h3 {
     color: red;
 }
 
 h2, h3 {
-    color: black;
     font-weight: bold;
 }
 
 button {
-    margin: 10px;
-    padding: 10px 20px;
-    background-color: red;
-    color: white;
-    border: none;
+    background-color: white;
+    border: 1px solid black;
+    color: black;
+    padding: 10px;
+    margin: 5px;
     cursor: pointer;
 }
 
-.dashboard-tile {
-    margin: 10px;
-    padding: 20px;
-    background-color: white;
-    border: 1px solid black;
+button:hover {
+    background-color: lightgrey;
+}
+
+nav {
+    text-align: center;
+    margin: 20px 0;
 }
 
 .page {
-    display: none;
+    padding: 20px;
 }
 
-.stock-info, .stock-form, .master-form, .report-options {
-    margin-top: 20px;
+.dashboard-tile {
+    background-color: white;
+    border: 1px solid black;
+    padding: 10px;
+    margin: 10px;
+    text-align: center;
 }
 
-label {
-    margin-right: 10px;
+.stock-form {
+    margin: 20px;
 }
 
-input, select {
-    margin: 5px;
-    padding: 5px;
+.master-form {
+    margin: 20px;
 }
