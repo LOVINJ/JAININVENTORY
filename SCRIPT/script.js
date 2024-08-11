@@ -40,25 +40,24 @@ function login(event) {
         populateDropdowns();
         document.getElementById('current-date').innerText = getCurrentDate();
     } else {
-        alert('Invalid login credentials.');
+        alert("Invalid login credentials!");
     }
 }
 
 function logout() {
-    document.getElementById('app-section').style.display = 'none';
     document.getElementById('login-section').style.display = 'block';
+    document.getElementById('app-section').style.display = 'none';
 }
 
 function showPage(page) {
-    const pages = document.querySelectorAll('.page');
-    pages.forEach(p => p.style.display = 'none');
+    document.querySelectorAll('.page').forEach(p => p.style.display = 'none');
     document.getElementById(page).style.display = 'block';
 }
 
 function getCurrentDate() {
     const today = new Date();
     const day = String(today.getDate()).padStart(2, '0');
-    const month = String(today.getMonth() + 1).padStart(2, '0'); // January is 0!
+    const month = String(today.getMonth() + 1).padStart(2, '0');
     const year = today.getFullYear();
     return `${day}/${month}/${year}`;
 }
@@ -113,11 +112,56 @@ function generateReport(type) {
 }
 
 function downloadReport() {
-    // Sample data for the report (Replace with actual data based on filters)
+    // Sample data for the report (You would generate this dynamically based on filters)
     const data = [
         { Date: "01/01/2024", Owner: "Owner 1", VehicleNo: "Vehicle 1", Item: "Item 1", Quantity: 10 },
         { Date: "01/01/2024", Owner: "Owner 2", VehicleNo: "Vehicle 2", Item: "Item 2", Quantity: 5 }
     ];
 
     // Create a new workbook and add a worksheet
-    const wb = XLS
+    const wb = XLSX.utils.book_new();
+    const ws = XLSX.utils.json_to_sheet(data);
+
+    XLSX.utils.book_append_sheet(wb, ws, "Report");
+
+    // Generate Excel file and trigger download
+    XLSX.writeFile(wb, "report.xlsx");
+}
+
+function showVehicleMaster() {
+    document.getElementById('vehicle-master').style.display = 'block';
+    document.getElementById('item-master').style.display = 'none';
+    document.getElementById('user-master').style.display = 'none';
+}
+
+function showItemMaster() {
+    document.getElementById('vehicle-master').style.display = 'none';
+    document.getElementById('item-master').style.display = 'block';
+    document.getElementById('user-master').style.display = 'none';
+}
+
+function showUserMaster() {
+    document.getElementById('vehicle-master').style.display = 'none';
+    document.getElementById('item-master').style.display = 'none';
+    document.getElementById('user-master').style.display = 'block';
+}
+
+function addVehicle() {
+    const vehicleNo = document.getElementById('vehicle-no-master').value;
+    const ownerName = document.getElementById('owner-name').value;
+    alert(`Vehicle Added: ${vehicleNo}, Owner: ${ownerName}`);
+}
+
+function addItem() {
+    const itemName = document.getElementById('item-name-master').value;
+    alert(`Item Added: ${itemName}`);
+}
+
+function addUser() {
+    const newUsername = document.getElementById('new-username').value;
+    const newPassword = document.getElementById('new-password').value;
+    alert(`User Added: ${newUsername}`);
+}
+
+// Event listener for login
+document.getElementById('login-form').addEventListener('submit', login);
